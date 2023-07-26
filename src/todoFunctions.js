@@ -1,38 +1,37 @@
-// todoFunctions.js
-
+/* eslint-disable no-use-before-define */
 export const tasks = [];
 
-export function addTask(description) {
+export const addTask = (description) => {
   const newTask = {
     description,
     completed: false,
     index: tasks.length + 1,
   };
   tasks.push(newTask);
-}
+};
 
-export function deleteTask(index) {
+export const deleteTask = (index) => {
   tasks.splice(index - 1, 1);
   updateIndexes();
-}
+};
 
-export function editTaskDescription(index, newDescription) {
+export const editTaskDescription = (index, newDescription) => {
   tasks[index - 1].description = newDescription;
-}
+};
 
-export function updateIndexes() {
+export const updateIndexes = () => {
   tasks.forEach((task, index) => {
     task.index = index + 1;
   });
-}
+};
 
-export function saveToLocalStorage() {
+export const saveToLocalStorage = () => {
   localStorage.setItem('tasks', JSON.stringify(tasks));
-}
+};
 
-export function loadFromLocalStorage() {
+export const loadFromLocalStorage = () => {
   const storedTasks = JSON.parse(localStorage.getItem('tasks'));
   if (storedTasks) {
     tasks.push(...storedTasks);
   }
-}
+};
